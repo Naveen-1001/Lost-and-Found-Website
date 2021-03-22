@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website SignUp</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    .slides {
+        display: none;
+        }
+    img {
+        vertical-align: middle;
+        }
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+
+    /* Caption text */
+    .Caption {
+        color: #f2f2f2;
+        font-size: 25px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .slideno {
+        color: #f2f2f2;
+        font-size: 25px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active {
+        background-color: #717171;
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+    .text {font-size: 11px}
+    }
+    </style>
+</head>
+<body onload="startTime()">
+    <header>
+        <h2>Welcome to Sign Up Page</h2>
+    </header>
+    <%- include('partials/NavBar') %>
+    <div id="DateTimeLive" style="padding: 10px; background-color:darkkhaki">This is LiveDateTime</div>
+    <div class="container">
+        <p style="color: crimson;">All fields are necessary unless specified</p>
+        <form id="signup_form" method="GET" onsubmit="return check(this)" action="rreport.html">
+            <div class="row">
+                <div class="leftt">
+                    <label for="fname"><b>First Name:- </b><i>Can Only consist of Alphabets and whitespaces</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="text" id="fname" name="fname" placeholder="Please enter your first name...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="gender">Gender</label>
+                </div>
+                <div class="rightt">
+                    <input type="radio" name="gender" id="male">Male
+                    <input type="radio" name="gender" id="Female">Female
+                    <input type="radio" name="gender" id="not_specified">Better Not reveal
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="mobile"><b>Mobile No.:- </b><i>(Should be 10-digit indian mobile number without country code)</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="text" name="mobile" id="mobile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="age">Age</label>
+                </div>
+                <div class="rightt">
+                    <input type="number" id="age" name="age" placeholder="Minimum requirement is 13 years">
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="Address"><b>Address:-</b><i>(Home delivery only if valid address specified)</i></label>
+                </div>
+                <div class="rightt">
+                    <textarea id="Address" name="Address" placeholder="Your address.." style="height:10vh"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="eid">Email-Id</label>
+                </div>
+                <div class="rightt">
+                    <input type="text" id="eid" name="eid" placeholder="xyz@hello.com">
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="text" id="username" name="username" placeholder="Please enter your username...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="leftt">
+                    <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="password" id="password" name="password" placeholder="Enter your password...">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="leftt">
+                    <label for="cpassword">Confirm Password</label>
+                </div>
+                <div class="rightt">
+                    <input type="password" id="cpassword" name="cpassword" placeholder="Enter the password again...">
+                </div>
+            </div>
+                        
+            <div class="row">
+                <input type="submit" value="Sign Up">
+            </div>
+        </form>
+    </div>
+    <h3 align="center" style="padding: 10px; background-color:olive">NITK Gallery(Slideshow)</h2>
+    
+    <div class="slideshow-container">
+        <div class="slides">
+            <div class="slideno">1 / 4</div>
+            <img src="mainb.jpg" style="width:100%">
+            <div class="Caption">NITK Main Building</div>
+        </div>
+
+        <div class="slides">
+            <div class="slideno">2 / 4</div>
+            <img src="nightbeach.jpg" style="width:100%">
+            <div class="Caption">NITK Beach </div>
+        </div>
+
+        <div class="slides">
+            <div class="slideno">3 / 4</div>
+            <img src="lighthouse.jpg" style="width:100%">
+            <div class="Caption">NITK Beach lighthouse</div>
+        </div>
+
+        <div class="slides">
+            <div class="slideno">4 / 4</div>
+            <img src="beachtopview.jpg" style="width:100%">
+            <div class="Caption">NITK Beach Top View</div>
+        </div>
+    </div>
+    <div style="text-align:center">
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <span class="dot"></span>
+    <span class="dot"></span> 
+    </div>
+    <script lang="Javascript">
+        var slideIndex = 0;
+        showSlides();
+        function showSlides() 
+        {
+            var i;
+            var slides = document.getElementsByClassName("slides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2400); 
+        }
+
+        function check(form)
+        {   
+            fn=form.fname.value;
+            regex_fn=/^(?=.*[a-zA-Z])[a-zA-Z\s]+$/;
+            if(!regex_fn.test(fn))
+            {
+                alert("Invalid Name");
+                return false;
+            }
+
+            if(!(form.male.checked || form.Female.checked || form.not_specified.checked))
+            {
+                alert("Please select an option for gender.");
+                return false;
+            }
+
+            un=form.username.value;
+            ps=form.password.value;
+            regex_ps=/^(?=.*[a-zA-Z_])(?=.*[0-9])(?=.*[@#\$%^\*!\.\+])[a-zA-Z0-9!@#\$%^&\*_\.]{6,}$/gm;
+            regex_un=/^[a-zA-Z_][a-zA-Z0-9_\.]{5,20}$/;
+            valid_username=regex_un.test(un);
+            valid_password=regex_ps.test(ps);
+            if(valid_username==false)
+            {
+                alert("The username is invalid");
+                return false;
+            }
+            if(valid_password==false)
+            {
+                alert("The password is invalid");
+                return false;
+            }
+
+            given_mobile=form.mobile.value;
+            regex_mobile=/^[789][0-9]{9}$/;
+            valid_mobile=regex_mobile.test(given_mobile);
+            if(!valid_mobile)
+            {
+                alert("The given mobile number is invalid");
+                return false;
+            }
+
+            given_email=form.eid.value;
+            regex_email=/[a-zA-Z0-9_\.]+[@][a-zA-Z0-9_\-\.]+[\.][a-z]+/;
+            valid_email=regex_email.test(given_email);
+
+            if(!valid_email)
+            {
+                alert("The given email is invalid");
+                return false;
+            }
+            
+            if(form.age.value<=12)
+            {
+                alert("Minimum age requirement is 13 years");
+                return false;
+            }
+
+            if(form.password.value!=form.cpassword.value)
+            {
+                alert("The passwords do not match!");
+                return false;
+            }
+
+            var toc = prompt("Please type 'I accept' to proceed. (By saying i accept you are agreeing to  out terms and conditions)");
+            if (toc!='I accept') 
+            {   
+                alert("You declined terms and conditions");
+                return false;
+            }
+
+            var last=window.confirm("Press OK to confirm the data in the form!");
+            if(last==false)
+            {
+                return false;
+            }
+
+            alert("Your Account has been created successfully!\n");
+            return true;
+        }
+        function startTime() 
+        {
+            var today = new Date();
+            document.getElementById('DateTimeLive').innerHTML = "Current Date and Time:- "+today;
+            var t = setTimeout(startTime, 500);
+        }
+    </script>
+</body>
+</html>

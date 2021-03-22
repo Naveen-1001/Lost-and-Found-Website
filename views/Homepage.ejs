@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lost & Found Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        nav :hover{
+            color: rgb(219, 10, 10);
+        }
+        main a :hover{
+            opacity: 0.4;
+        }
+        .location{
+            background-color:rgb(32, 47, 63) ;
+        }
+        @media screen and (max-width: 900px){
+            .work{
+                font-size: x-large;
+            }
+
+            .txt_on_image{
+                font-size: x-large;
+            }
+
+            header h1 {
+                font-size: 6vw;
+            }
+
+            h2 {
+                font-size: 3.5vw;
+            }
+
+            nav a{
+                font-size: 3vw;
+            }
+        }
+
+    </style>
+
+    <script lang="Javascript">
+        
+        function setCookie(cname, cvalue, exdays) 
+        {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) 
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) 
+            {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') 
+                {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) 
+                {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() 
+        {
+            var user = getCookie("username");
+            var value=getCookie("visited");
+            if (user != "") 
+            {
+                alert("Welcome Back to our website " + user+". You have visited this page "+value+" times! (Found using cookies)");
+                setCookie("visited",parseInt(parseInt(value)+1),365);
+            } 
+            else 
+            {
+                user = prompt("Please enter your name:", "");
+                if (user != "" && user != null) 
+                {
+                    setCookie("username", user, 365);
+                    setCookie("visited",2,365);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="checkCookie()">
+
+    <header>
+        <h1 align="center" style="color: oldlace;">Central Lost and Found</h1>
+    </header>
+
+    <%- include('partials/NavBar') %>
+
+    <main class="main">
+        <div class="picture" style="background-color: dimgray;">
+            <img src="background1.jpg" alt="" style="width: 100%;">
+            <div class="txt_on_image" style="font-weight: bolder; ">Your goto place to find all your lost Items+ Buy rare items</div>
+        </div>
+
+        <div class="work" style=" background-color: dimgray; background-size: cover; font-size: 1.5vw; ">
+            <h2>How we Work</h2>
+            Want to report a lost Item?
+            
+            All you have to do is login and report the details of the the found item
+            in the Report Found Item section in the navigaton bar above. Its as easy as that!.
+            Want to report Your lost Item?
+            
+            All you have to do is login and report the details of your missing Item in the Report Lost Item section. Simple!
+            All the items that are not retrieved within a year are up for sale at 50% of the estimated price or rent it at for 11% depending on product type and their condition.
+            These items are displayed at the available items section along with product demo
+        </div>
+
+        
+        <div class="location" >
+            <h2 align="center">Where we are located</h2>
+            <span style="font-size: larger;">We are located inside NITK campus. Here is the campus which awaits you incase you decide to explore the campus after finding your lost objects</span> 
+            <br><hr>
+
+            <figure class="tour">
+                <iframe style=" width: 60vw; height: 35vw;"  src="https://www.youtube.com/embed/dVtoW9qQ2eE" frameborder="1" ></iframe>
+                <figcaption><address>NH 66, Srinivasnagar, Surathkal, Mangalore, Karnataka 575025</address></figcaption>
+                <hr>
+                <a href="https://www.google.com/maps/dir/18.7318645,73.6653936/nitk+address/@18.8061718,72.8020689,8.25z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3ba35211b768ac8f:0x6b1144ac2d5dadf3!2m2!1d74.7943167!2d13.0109883" style="font-size: larger; color: whitesmoke; " >Click here for directions</a>
+            </figure>
+
+            <hr>
+            <figure class="logo">
+                <a href="https://www.nitk.ac.in/"><img src="logo.png" style=" width: 11%;" alt=""></a>
+                <figcaption>
+                    Click on Image to visit the NITK Website
+                </figcaption>
+            </figure> 
+            
+        </div>
+    </main>
+    <footer >
+        <a href="#">Contact Us&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+        <a href="#">Refund Policy&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+        <a href="#">&copy;Central Lost & Found</a>
+    </footer>
+</body>
+</html>

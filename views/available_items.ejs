@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Items</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        li{
+            font-size: larger;
+        }
+        a:hover{
+            opacity: 0.5;
+        }
+        img:hover{
+            opacity: 0.5;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-size: large;
+        }
+    </style>
+
+    <script lang="Javascript">
+        function check(form)
+        {
+            if(!(form.buy.checked || form.rent.checked))
+            {
+                alert("Choose either rent or buy");
+                return false;
+            }
+
+            if(form.rent.checked)
+            {
+                if(form.duration.value.length==0 || form.duration.value>=30 || form.duration.value<5)
+                {
+                    alert("Either duration feild empty or duration cannot excede 30 days or less than 5 days");
+                    return false;
+                }
+            }
+            if(form.Address.value.length==0)
+            {
+                alert("Address cannot be empty");
+                return false;
+            }
+            return true;
+        }
+
+        function calculate_cost(form)
+        {   
+            if(form.rent.checked && form.duration.value<30 && form.duration.value>=5)
+            {   
+                document.getElementById("calcost").innerHTML=form.duration.value*(document.getElementById("priceperday").innerHTML);
+            }
+            else 
+            {
+                document.getElementById("calcost").innerHTML="Cannot calculate cost! Check input";
+            }
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <header class="header_lost_items">
+        <h2>Product Demo + Buy/rent form</h2>
+    </header> 
+    <%- include('partials/NavBar') %>
+    <div>
+        <h3>Books</h3><br>
+        Harry Potter and the Sorcerer's Stone
+        <figure>
+            <a href="https://www.youtube.com/embed/VyHV0BRtdxo"><img src="HarryPotter.jpg" alt="Demo Image" width="250px" ></a>
+        </figure>
+        <div class="container">
+            <p style="color: crimson;">All fields are necessary unless specified</p>
+            <form onsubmit="return check(this)" method="POST" >
+                Buy Price: &#8377;400, 
+                Rent Price per day: &#8377;<p id="priceperday">13</p> 
+                Condtion: Good, 
+                Click image for demo
+                <br>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="buyrent">Do you want to buy or rent?</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="radio" name="buyrent" id="buy" >Buy
+                        <input type="radio" name="buyrent" id="rent" >Rent
+                        </div>
+                </div> 
+                <div class="row">
+                    <div class="leftt">
+                        <label for="duration"><b>Duration:- </b><i>(Cannot rent for more than 29 days ot less than 5 days)</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="number" id="duration" name="duration" placeholder="Enter the duration of which you want to rent in days">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="Address">Address</label>
+                    </div>
+                    <div class="rightt">
+                    <input type="text" id="Address" name="Address" placeholder="Your address.." style="height:10vh">
+                    </div>
+                </div>
+                <div class="row">
+                    <button onclick="return calculate_cost(form)" style="background-color: rgb(255, 202, 69);">Rent price</button>
+                    <p>The cost is:-</p>
+                    <p id="calcost" ></p>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Book">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

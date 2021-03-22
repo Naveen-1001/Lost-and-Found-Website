@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebsiteLogin</title>
+    <link rel="stylesheet" href="style.css">
+    <script lang="Javascript">
+        function startTime() 
+        {
+            var today = new Date();
+            document.getElementById('DateTimeLive').innerHTML = "Current Date and Time:- "+today;
+            var t = setTimeout(startTime, 500);
+        }
+        function check(form)
+        {
+            var un=form.username.value;
+            var ps=form.password.value;
+            var regex_ps=/^(?=.*[a-zA-Z_])(?=.*[0-9])(?=.*[@#\$%^\*!\.\+])[a-zA-Z0-9!@#\$%^&\*_\.]{6,}$/gm;
+            var regex_un=/^[a-zA-Z_][a-zA-Z0-9_\.]{5,20}$/;
+            var valid_username=regex_un.test(un);
+            var valid_password=regex_ps.test(ps);
+            if(valid_username==false)
+            {
+                alert("The username is invalid");
+                return false;
+            }
+            if(valid_password==false)
+            {
+                alert("The password is invalid");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body onload="startTime()">
+    <header>
+        <h2>Welcome to Login Page</h2>
+    </header>
+    <%- include('partials/NavBar') %>
+    <div id="DateTimeLive" style="padding: 10px; background-color:darkkhaki">This is LiveDateTime</div>
+    <div class="container">
+        <form onsubmit="return check(this)" method="POST">
+            <div class="row">
+                <div class="leftt">
+                    <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="text" id="username" name="username" placeholder="Please enter your username..." value="<%=qs.username%> ">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="leftt">
+                    <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
+                </div>
+                <div class="rightt">
+                    <input type="password" id="password" name="password" placeholder="Enter your password...">
+                </div>
+            </div>
+            
+            
+            <div class="row">
+              <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
