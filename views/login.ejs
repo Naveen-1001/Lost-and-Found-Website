@@ -35,37 +35,39 @@
     </script>
 </head>
 <body onload="startTime()">
-    <header>
-        <h2>Welcome to Login Page</h2>
-    </header>
-    <%- include('partials/NavBar') %>
-    <div id="DateTimeLive" style="padding: 10px; background-color:darkkhaki">This is LiveDateTime</div>
-    <div class="container">
-        <form onsubmit="return check(this)" method="POST">
-            <div class="row">
-                <div class="leftt">
-                    <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
-                </div>
-                <div class="rightt">
-                    <input type="text" id="username" name="username" placeholder="Please enter your username..." value="<%=qs.username%> ">
-                </div>
-            </div>
+    <div class="body">
+        <div class="header">
+            <h2>Welcome to Login Page</h2>
+        </div>
+        <%- include('partials/NavBar') %>
+        <%- include('partials/DateTime') %> 
 
-            <div class="row">
-                <div class="leftt">
-                    <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
+        <div class="container">
+            <form onsubmit="return check(this)" method="POST">
+                <div class="row">
+                    <div class="leftt">
+                        <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="text" id="username" name="username" placeholder="Please enter your username...">
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input type="password" id="password" name="password" placeholder="Enter your password...">
-                </div>
-            </div>
-            
-            
-            <div class="row">
-              <input type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
     
+                <div class="row">
+                    <div class="leftt">
+                        <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="password" id="password" name="password" placeholder="Enter your password...">
+                    </div>
+                </div>
+                
+                <div class="row">
+                  <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <%- include('partials/Footer') %>
+    </div>
 </body>
 </html>

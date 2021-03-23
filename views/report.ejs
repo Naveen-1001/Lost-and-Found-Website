@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Report form</title>
     <link rel="stylesheet" href="style.css">
-
     <script lang="Javascript">
-
         function startTime() 
         {
             var today = new Date();
@@ -81,89 +79,82 @@
             x.style.background="white";
         }
     </script>
-    
 </head>
+
 <body onload="startTime()">
-
-    <header>
-        <h2>Fill this form if you want to report a lost/found Item</h2>
-    </header>
-    <%- include('partials/NavBar') %>
-    <div id="DateTimeLive" style="padding: 10px; background-color:darkkhaki">This is LiveDateTime</div>
-    <p style="color: crimson;">All fields are necessary unless specified</p>
-    <div class="container">
-        <form id="report_form" onsubmit="return check(this)" method="POST" >
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="type">Lost/Found:-</label>
+    <div class="body">
+        <div class="header">
+            <h2>Fill this form if you want to report a lost/found Item</h2>
+        </div>
+        <%- include('partials/NavBar') %>
+        <%- include('partials/DateTime') %> 
+        <p style="color: crimson; font-size: 20px; padding-left: 1.5vw;">All fields are necessary unless specified</p>
+        <div class="container">
+            <form id="report_form" onsubmit="return check(this)" method="POST" >
+                <div>
+                    <div class="leftt">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="">Item Type(multiple allowed):-</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="checkbox" id="Book">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Book">Book</label><br>
+                        <input type="checkbox" id="Electronics" >
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Electronics"> Electronics</label><br>
+                        <input type="checkbox" id="Sports" >
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Sports"> Sports Equipment</label><br>
+                        <input type="checkbox" id="Others" >
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Others">Others</label><br>
+                    </div>
                 </div>
-                <div class="rightt">
-                    <textarea onfocus="inputcolor(this)" onfocusout="onfoc_out(this)" id="type" name="type" placeholder="Enter either lost/found" style="height:15vh" ></textarea>
+    
+                <div class="row">
+                    <div class="leftt">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="venue">Venue:-</label>
+                    </div>
+                    <div class="rightt">
+                        <textarea onfocus="inputcolor(this)" onfocusout="onfoc_out(this)" id="venue" name="venue" placeholder="Enter the venue where you lost/found the item here..." style="height:15vh"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="">Item Type(multiple allowed):-</label>
+    
+                <div class="row">
+                    <div class="leftt">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="date"><b>Enter the Date when item was lost/found:- </b><i>(in dd/mm/yyyy format) *Only reports year 2020 onwards are allowed:/</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input onfocus="inputcolor(this)" onfocusout="onfoc_out(this)"  type="text" id="date" name="date">
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input name="Book" type="checkbox" id="Book" value="Book">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Book">Book</label><br>
-                    <input name="Electronics" type="checkbox" id="Electronics" value="Electronics">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Electronics"> Electronics</label><br>
-                    <input name="Sports" type="checkbox" id="Sports" value="Sports" >
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Sports"> Sports Equipment</label><br>
-                    <input name="Others" type="checkbox" id="Others" value="Others" >
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="Others">Others</label><br>
+    
+                <div class="row">
+                    <div class="leftt">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="time"><b>Enter the Time when item was lost/found:- </b><i>(in 24 hr format hour:min:sec) eg. 08:01:01 </i></label>
+                    </div>
+                    <div class="rightt">
+                        <input onfocus="inputcolor(this)" onfocusout="onfoc_out(this)"  type="text" id="time" name="time">
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="venue">Venue:-</label>
+    
+                <div class="row">
+                    <div class="leftt">
+                        <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="price">Estimated Price range of item</label>
+                    </div>
+                    <div class="rightt">
+                        <select name="price" id="price" required>
+                            <option value="Disabled" disabled selected>--select estimated price range of the lost/found item--</option>
+                            <option value="Trivial">Less than &#8377;500</option>
+                            <option value="Mid Price Range">Less than &#8377;2000 </option>
+                            <option value="Higher Price Range">Less than &#8377;5000</option>
+                            <option value="Expensive">Less than &#8377; 10000</option>
+                            <option value="Valuable">Greater than &#8377;10000</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="rightt">
-                    <textarea onfocus="inputcolor(this)" onfocusout="onfoc_out(this)" id="venue" name="venue" placeholder="Enter the venue where you lost/found the item here..." style="height:15vh" ></textarea>
+                <div class="row">
+                    <input type="submit" value="Send Report">
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="date"><b>Enter the Date when item was lost/found:- </b><i>(in dd/mm/yyyy format) *Only reports year 2020 onwards are allowed:/</i></label>
-                </div>
-                <div class="rightt">
-                    <input onfocus="inputcolor(this)" onfocusout="onfoc_out(this)"  type="text" id="date" name="date">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="time"><b>Enter the Time when item was lost/found:- </b><i>(in 24 hr format hour:min:sec) eg. 08:01:01 </i></label>
-                </div>
-                <div class="rightt">
-                    <input onfocus="inputcolor(this)" onfocusout="onfoc_out(this)"  type="text" id="time" name="time">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="leftt">
-                    <label onmouseover="hover(this)" onmouseout="hover_remove(this)" for="price">Estimated Price range of item</label>
-                </div>
-                <div class="rightt">
-                    <select name="price" id="price" required>
-                        <option value="disabled" disabled selected>--select estimated price range of the lost/found item--</option>
-                        <option value="trivial">Less than &#8377;500</option>
-                        <option value="Mid range">Less than &#8377;2000 </option>
-                        <option value="Higher range">Less than &#8377;5000</option>
-                        <option value="Expensivee">Less than &#8377; 10000</option>
-                        <option value="Valuables">Greater than &#8377;10000</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row">
-                <input type="submit" value="Send Report">
-            </div>
-        </form>
+            </form>
+        </div>
+        <%- include('partials/Footer') %>
     </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website SignUp</title>
     <link rel="stylesheet" href="style.css">
-
+    
     <style>
     * {
         box-sizing: border-box;
@@ -64,129 +64,133 @@
     .text {font-size: 11px}
     }
     </style>
+    
 </head>
 <body onload="startTime()">
-    <header>
-        <h2>Welcome to Sign Up Page</h2>
-    </header>
-    <%- include('partials/NavBar') %>
-    <div id="DateTimeLive" style="padding: 10px; background-color:darkkhaki">This is LiveDateTime</div>
-    <div class="container">
-        <p style="color: crimson;">All fields are necessary unless specified</p>
-        <form id="signup_form" method="GET" onsubmit="return check(this)" action="rreport.html">
-            <div class="row">
-                <div class="leftt">
-                    <label for="fname"><b>First Name:- </b><i>Can Only consist of Alphabets and whitespaces</i></label>
+    <div class="body">
+        <div class="header">
+            <h2>Welcome to Sign Up Page</h2>
+        </div>
+        <%- include('partials/NavBar') %>
+        <%- include('partials/DateTime') %> 
+        <div class="container">
+            <p style="color: crimson; font-size: 20px;">All fields are necessary unless specified</p>
+            <form id="signup_form" method="POST" onsubmit="return check(this)" >
+                <div class="row">
+                    <div class="leftt">
+                        <label for="fname"><b>First Name:- </b><i>Can Only consist of Alphabets and whitespaces</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="text" id="fname" name="fname" placeholder="Please enter your first name...">
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input type="text" id="fname" name="fname" placeholder="Please enter your first name...">
+                <div class="row">
+                    <div class="leftt">
+                        <label for="gender">Gender</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="radio" name="gender" id="male">Male
+                        <input type="radio" name="gender" id="Female">Female
+                        <input type="radio" name="gender" id="not_specified">Better Not reveal
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="gender">Gender</label>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="mobile"><b>Mobile No.:- </b><i>(Should be 10-digit indian mobile number without country code)</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="text" name="mobile" id="mobile">
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input type="radio" name="gender" id="male">Male
-                    <input type="radio" name="gender" id="Female">Female
-                    <input type="radio" name="gender" id="not_specified">Better Not reveal
+                <div class="row">
+                    <div class="leftt">
+                        <label for="age">Age</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="number" id="age" name="age" placeholder="Minimum requirement is 13 years">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="mobile"><b>Mobile No.:- </b><i>(Should be 10-digit indian mobile number without country code)</i></label>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="Address"><b>Address:-</b><i>(Home delivery only if valid address specified)</i></label>
+                    </div>
+                    <div class="rightt">
+                        <textarea id="Address" name="Address" placeholder="Your address.." style="height:10vh"></textarea>
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input type="text" name="mobile" id="mobile">
+                <div class="row">
+                    <div class="leftt">
+                        <label for="eid">Email-Id</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="text" id="eid" name="eid" placeholder="xyz@hello.com">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="age">Age</label>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="text" id="username" name="username" placeholder="Please enter your username...">
+                    </div>
                 </div>
-                <div class="rightt">
-                    <input type="number" id="age" name="age" placeholder="Minimum requirement is 13 years">
+                <div class="row">
+                    <div class="leftt">
+                        <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
+                    </div>
+                    <div class="rightt">
+                        <input type="password" id="password" name="password" placeholder="Enter your password...">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="Address"><b>Address:-</b><i>(Home delivery only if valid address specified)</i></label>
-                </div>
-                <div class="rightt">
-                    <textarea id="Address" name="Address" placeholder="Your address.." style="height:10vh"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="eid">Email-Id</label>
-                </div>
-                <div class="rightt">
-                    <input type="text" id="eid" name="eid" placeholder="xyz@hello.com">
-                </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="username"><b>Username:- </b><i>(it should have 6-21 alphanumeric characters. Should start with alphabet or _.)</i></label>
-                </div>
-                <div class="rightt">
-                    <input type="text" id="username" name="username" placeholder="Please enter your username...">
-                </div>
-            </div>
-            <div class="row">
-                <div class="leftt">
-                    <label for="password"><b>Password:- </b><i>(it should contain minimum of 6 characters with atleast 1 each of alphabet or _, number, and special character(*,!,@,#,$,%,^,&,*,+))</i></label>
-                </div>
-                <div class="rightt">
-                    <input type="password" id="password" name="password" placeholder="Enter your password...">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="leftt">
-                    <label for="cpassword">Confirm Password</label>
-                </div>
-                <div class="rightt">
-                    <input type="password" id="cpassword" name="cpassword" placeholder="Enter the password again...">
-                </div>
-            </div>
-                        
-            <div class="row">
-                <input type="submit" value="Sign Up">
-            </div>
-        </form>
-    </div>
-    <h3 align="center" style="padding: 10px; background-color:olive">NITK Gallery(Slideshow)</h2>
     
-    <div class="slideshow-container">
-        <div class="slides">
-            <div class="slideno">1 / 4</div>
-            <img src="mainb.jpg" style="width:100%">
-            <div class="Caption">NITK Main Building</div>
+                <div class="row">
+                    <div class="leftt">
+                        <label for="cpassword">Confirm Password</label>
+                    </div>
+                    <div class="rightt">
+                        <input type="password" id="cpassword" name="cpassword" placeholder="Enter the password again...">
+                    </div>
+                </div>
+                            
+                <div class="row">
+                    <input type="submit" value="Sign Up">
+                </div>
+            </form>
         </div>
+        <div class="slideshow">
+            <h3 align="center">NITK Gallery(Slideshow)</h3>
 
-        <div class="slides">
-            <div class="slideno">2 / 4</div>
-            <img src="nightbeach.jpg" style="width:100%">
-            <div class="Caption">NITK Beach </div>
-        </div>
+            <div class="slideshow-container">
+                <div class="slides">
+                    <div class="slideno">1 / 4</div>
+                    <img src="mainb.jpg" style="width:100%">
+                    <div class="Caption">NITK Main Building</div>
+                </div>
+                <div class="slides">
+                    <div class="slideno">2 / 4</div>
+                    <img src="nightbeach.jpg" style="width:100%">
+                    <div class="Caption">NITK Beach </div>
+                </div>
+                <div class="slides">
+                    <div class="slideno">3 / 4</div>
+                    <img src="lighthouse.jpg" style="width:100%">
+                    <div class="Caption">NITK Beach lighthouse</div>
+                </div>
+                <div class="slides">
+                    <div class="slideno">4 / 4</div>
+                    <img src="beachtopview.jpg" style="width:100%">
+                    <div class="Caption">NITK Beach Top View</div>
+                </div>
+            </div>
 
-        <div class="slides">
-            <div class="slideno">3 / 4</div>
-            <img src="lighthouse.jpg" style="width:100%">
-            <div class="Caption">NITK Beach lighthouse</div>
+            <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span>
+            <span class="dot"></span> 
+            </div>
         </div>
-
-        <div class="slides">
-            <div class="slideno">4 / 4</div>
-            <img src="beachtopview.jpg" style="width:100%">
-            <div class="Caption">NITK Beach Top View</div>
-        </div>
-    </div>
-    <div style="text-align:center">
-    <span class="dot"></span> 
-    <span class="dot"></span> 
-    <span class="dot"></span>
-    <span class="dot"></span> 
+        <%- include('partials/Footer') %>
     </div>
     <script lang="Javascript">
         var slideIndex = 0;
